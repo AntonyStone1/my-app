@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import './index.css'
+import UserListCapture from "./components/UserListCapture";
+import CreateUser from "./components/CreateUser";
+
+
+
+const User = () => {
+    const [userData, setUserData] = useState([])
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users/')
+        .then(response => response.json())
+        .then(res => {
+            setUserData(res)
+        }) 
+    }, [])
+    console.log(userData);
+    return <CreateUser props={userData}/>
+}
+
+
+function App() {
+    return (        
+        <div className="wrapper"><UserListCapture/><User/></div>
+    )    
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <App/>,    
+    document.getElementById('root'))

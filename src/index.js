@@ -5,7 +5,6 @@ import UserListCapture from "./components/UserListCapture";
 import CreateUser from "./components/CreateUser";
 
 
-
 const User = () => {
     const [userData, setUserData] = useState([])
     useEffect(() => {
@@ -15,8 +14,7 @@ const User = () => {
             setUserData(res)
         }) 
     }, [])
-    console.log(userData);
-    return <CreateUser props={userData}/>
+    return <CreateUser userData={userData}/>
 }
 
 

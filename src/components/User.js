@@ -7,19 +7,24 @@ const User = ({ userData }) => {
       show: false,
       userPassed: null,
   });
-  const handleClick = (user) => {
-    setState(prev => ({show: !prev.show, userPassed: prev.show ? null : user}))
+  const handleClick = (e) => {
+    setState({show: true, userPassed: userData.find(el => String(el.id) === e.currentTarget.id)})
+  };
+
+  const handleClose = (e) => {
+    setState({show: false, userPassed: null})
   };
 
   return (
     <div className="user_container" >
-     {state.show && (<UserCard user={state.userPassed} onClose={handleClick}/>)}
+     {state.show && (<UserCard user={state.userPassed} onClose={handleClose}/>)}
 
       {userData.map((user, index) => (
         <div
           key={user.id}
           className="user_item"
-          onClick={() => handleClick(user)}
+          id={user.id}
+          onClick={handleClick}
         >
           <p>
             {index + 1} {user.name}

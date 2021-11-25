@@ -17,7 +17,8 @@ const UserCard = ({ user, onClose }) => {
     function handleStopPropag(e) {
         e.stopPropagation()
     }
-    function handleClose() {
+    function handleClose(e) {
+      e.stopPropagation()
         onClose()
     }
 

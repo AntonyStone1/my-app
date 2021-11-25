@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CreateActiveUserCard from './CreateActiveUserCard'
+import UserCard from './UserCard'
 
 
-const CreateUser = ({ userData }) => {
+const User = ({ userData }) => {
   const [state, setState] = useState({
       show: false,
       userPassed: null,
@@ -13,7 +13,7 @@ const CreateUser = ({ userData }) => {
 
   return (
     <div className="user_container" >
-     {state.show && (<CreateActiveUserCard user={state.userPassed} onClose={handleClick}/>)}
+     {state.show && (<UserCard user={state.userPassed} onClose={handleClick}/>)}
 
       {userData.map((user, index) => (
         <div
@@ -32,4 +32,4 @@ const CreateUser = ({ userData }) => {
   );
 };
 
-export default CreateUser;
+export default User;

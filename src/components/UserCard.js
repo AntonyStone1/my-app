@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 
-const CreateActiveUserCard = ({ user, onClose }) => {
+const UserCard = ({ user, onClose }) => {
     const [disable, setDisable] = useState({
         mayChange: true
     })
@@ -10,7 +10,9 @@ const CreateActiveUserCard = ({ user, onClose }) => {
         userCompany: user.company.name,
         userWebsite: user.website,
     })
-    const saveBtn = useRef()
+    // const [state, setState] = useState({
+    //   show: false
+    // })
 
     function handleStopPropag(e) {
         e.stopPropagation()
@@ -19,32 +21,35 @@ const CreateActiveUserCard = ({ user, onClose }) => {
         onClose()
     }
 
-    function clickAnimations() {
-        saveBtn.current.classList.toggle('btn__hidden')
+    function toggleButton() {
         setDisable(prev => ({mayChange: !prev.mayChange}))
     }
     function handleValue(e) {  
         setInputValue(prev => ({ ...prev, [e.target.name]: e.target.value}));
     }
-    async function sendForm() {
-        const newUserData = {
-            name: inputValue.userName,
-              company: {
-                name: inputValue.userCompany
-              },
-              website: inputValue.userWebsite
-            }
-        
-        console.log(user.id);
-        await fetch('https://jsonplaceholder.typicode.com/users/' + user.id, {
-            method: 'PUT',
-            body: JSON.stringify(newUserData),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
+    function SendForm() {
+      const newUserData = {
+          name: inputValue.userName,
+            company: {
+              name: inputValue.userCompany
+            },
+            website: inputValue.userWebsite
+          }
+      fetch('https://jsonplaceholder.typicode.com/users/' + user.id, {
+        method: 'PUT',
+        body: JSON.stringify(newUserData),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
         },
-    })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+      })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json) {
+          toggleButton()
+          console.log(json);
+        }
+      })       
+        
     }
 
     return (        
@@ -52,7 +57,6 @@ const CreateActiveUserCard = ({ user, onClose }) => {
         <div className="active_card-item" onClick={handleStopPropag}>
         <span className="close_btn" onClick={handleClose}></span>
           <div className="user_info">
-          <form>
           <label>Full name: 
           <input
             onChange={handleValue}
@@ -80,16 +84,14 @@ const CreateActiveUserCard = ({ user, onClose }) => {
                 disabled={disable.mayChange}
                 />
             </label>
-            <button  onClick={sendForm} ref={saveBtn} className="btn user_save-btn btn__hidden">Save</button>
-            </form>
+            {!disable.mayChange && <button  onClick={SendForm} className="btn user_save-btn">Save</button>}
           </div>
           <div className="user_edit-btns">
-              <button className="btn" onClick={clickAnimations}>Edit</button>
-              
+              <button className="btn" onClick={toggleButton}>Edit</button>
           </div>
         </div>
       </div>
     );
   };
 
-export default CreateActiveUserCard
+export default UserCard

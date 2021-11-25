@@ -1,3 +1,6 @@
+@import url('./media.css');
+
+
 * {
     padding: 0;
     margin: 0;
@@ -47,9 +50,9 @@ body {
 .btn-click {
     transform: scale(0.9);
 }
-.btn__hidden {
+/* .btn__hidden {
     display: none;
-}
+} */
 .btn__no-active:hover {
     background-color: rgb(215, 236, 255);
 }
@@ -124,15 +127,13 @@ body {
     border-radius: 25px;
 }
 .user_info {
-    position: relative;
-    height: 35%;
-}
-.user_info form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
+    position: relative;
+    height: 35%;
 }
+
 
 .user_edit-btns {
     display: flex;
@@ -142,5 +143,5 @@ body {
 }
 .user_save-btn {
     position: absolute;
-    top: 130px;
+    top: 110%;
 }

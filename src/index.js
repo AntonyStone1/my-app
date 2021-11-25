@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import './index.css'
 import UserListCapture from "./components/UserListCapture";
-import CreateUser from "./components/CreateUser";
+import User from "./components/User";
 
 
 const GetUserData = () => {
@@ -20,7 +20,10 @@ const GetUserData = () => {
 
 function App() {
     return (        
-        <div className="wrapper"><UserListCapture/><CreateUser userData={GetUserData()}/></div>
+        <div className="wrapper">
+        <UserListCapture/>
+        <User userData={GetUserData()}/>
+        </div>
     )    
 }
 

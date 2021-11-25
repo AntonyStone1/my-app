@@ -10,10 +10,7 @@ const UserCard = ({ user, onClose }) => {
         userCompany: user.company.name,
         userWebsite: user.website,
     })
-    // const [state, setState] = useState({
-    //   show: false
-    // })
-
+    
     function handleStopPropag(e) {
         e.stopPropagation()
     }

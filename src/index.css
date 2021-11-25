@@ -50,9 +50,7 @@ body {
 .btn-click {
     transform: scale(0.9);
 }
-/* .btn__hidden {
-    display: none;
-} */
+
 .btn__no-active:hover {
     background-color: rgb(215, 236, 255);
 }

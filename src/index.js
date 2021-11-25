@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import './index.css'
 import UserListCapture from "./components/UserListCapture";
-import User from "./components/User";
+import UserList from "./components/UserList";
+import BrowserRouter from 'react-router-dom'
 
 
 const GetUserData = () => {
@@ -22,7 +23,7 @@ function App() {
     return (        
         <div className="wrapper">
         <UserListCapture/>
-        <User userData={GetUserData()}/>
+        <UserList userData={GetUserData()}/>
         </div>
     )    
 }

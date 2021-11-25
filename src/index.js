@@ -5,7 +5,7 @@ import UserListCapture from "./components/UserListCapture";
 import CreateUser from "./components/CreateUser";
 
 
-const User = () => {
+const GetUserData = () => {
     const [userData, setUserData] = useState([])
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users/')
@@ -14,13 +14,13 @@ const User = () => {
             setUserData(res)
         }) 
     }, [])
-    return <CreateUser userData={userData}/>
+    return userData
 }
 
 
 function App() {
     return (        
-        <div className="wrapper"><UserListCapture/><User/></div>
+        <div className="wrapper"><UserListCapture/><CreateUser userData={GetUserData()}/></div>
     )    
 }
 

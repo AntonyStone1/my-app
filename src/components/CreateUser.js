@@ -9,7 +9,6 @@ const CreateUser = ({ userData }) => {
   });
   const handleClick = (user) => {
     setState(prev => ({show: !prev.show, userPassed: prev.show ? null : user}))
-
   };
 
   return (

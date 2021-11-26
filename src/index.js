@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import './index.css'
 import UserListCapture from "./components/UserListCapture";
 import UserList from "./components/UserList";
-import BasicExample from './components/BasicExample'
+import Routing from './components/Routing'
 
 export const GetUserData = () => {
     const [userData, setUserData] = useState([])
@@ -22,8 +22,7 @@ function App() {
     return (        
         <div className="wrapper">
         <UserListCapture/>
-        {/* <UserList userData={GetUserData()}/> */}
-        <BasicExample/>
+        <Routing/>
         </div>
     )    
 }

@@ -17,7 +17,7 @@ const UserList = ({ userData }) => {
   });
   const handleClick = (e, user) => {
     history.push({
-      pathname: `/user/${e.target.id}` ,
+      pathname: `/${e.target.id}` ,
       state: { user }
     })
   };

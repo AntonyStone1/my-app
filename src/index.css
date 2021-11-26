@@ -78,6 +78,9 @@ body {
     border-bottom: none;    
     cursor: pointer;
 }
+.user_item p {
+    pointer-events: none;
+}
 
 .user_item:last-child {
     border-bottom: 1px solid black;

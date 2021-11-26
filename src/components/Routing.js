@@ -9,7 +9,7 @@ import UserPage from "./UserPage";
 import UserList from "./UserList";
 import { GetUserData } from "..";
 
-export default function BasicExample() {
+export default function Routing() {
   return (
     <Router>
       <div> 

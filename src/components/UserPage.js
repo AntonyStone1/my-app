@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserList from "./UserList";
+
 
 const UserPage = () => {
     const {location} = useHistory()
-    console.log(location.state.user);
     const [disable, setDisable] = useState({
         mayChange: true
     })

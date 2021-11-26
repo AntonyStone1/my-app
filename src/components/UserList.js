@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import UserCard from './UserCard'
+import UserCard from './UserCard'
 
 
 const UserList = ({ userData }) => {
@@ -11,7 +11,7 @@ const UserList = ({ userData }) => {
     setState({show: true, userPassed: userData.find(el => String(el.id) === e.currentTarget.id)})
   };
 
-  const handleClose = (e) => {
+  const handleClose = () => {
     setState({show: false, userPassed: null})
   };
 

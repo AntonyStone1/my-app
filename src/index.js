@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import './index.css'
-import UserListCapture from "./components/UserListCapture";
-import UserList from "./components/UserList";
+import UserListHeading from "./components/UserListHeading";
 import Routing from './components/Routing'
 
 export const GetUserData = () => {
@@ -21,7 +20,7 @@ export const GetUserData = () => {
 function App() {
     return (        
         <div className="wrapper">
-        <UserListCapture/>
+        <UserListHeading/>
         <Routing/>
         </div>
     )    

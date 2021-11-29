@@ -1,30 +1,24 @@
 import React, { useState } from "react";
-// import UserCard from './UserCard'
 import UserPage from './UserPage'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory
-} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 const UserList = ({ userData }) => {
-  const history = useHistory()
+  const history = useHistory();
   const [state, setState] = useState({
       show: false,
       userPassed: null,
   });
-  const handleClick = (e, user) => {
+  const handleClick = (e) => {
     history.push({
-      pathname: `/${e.target.id}` ,
-      state: { user }
+      pathname: `/${e.target.id}`
     })
   };
 
-  const handleClose = (e) => {
+  const handleClose = () => {
     setState({show: false, userPassed: null})
   };
+
+  
 
   return (
 
@@ -35,7 +29,8 @@ const UserList = ({ userData }) => {
           key={user.id}
           className="user_item"
           id={user.id}
-          onClick={(e) => handleClick(e, user)}>
+          onClick={(e) => handleClick(e)}
+          >
           <p>
             {index + 1} {user.name}
           </p>

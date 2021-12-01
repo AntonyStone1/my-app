@@ -15,7 +15,6 @@ export function UserDataProvider({children}) {
           return setUserData(res)
         }) 
     }, [])
-    console.log('ProviderData', userData);
   return <UserContext.Provider value={{userData, setUserData, isLoaded, setLoaded}}>{children}</UserContext.Provider>
 }
 

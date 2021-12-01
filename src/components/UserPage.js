@@ -24,14 +24,6 @@ const UserPage = () => {
 
     const { id } = useParams();
 
-    // useEffect(() => {
-    //   Context.userData && Context.userData.forEach(user => {
-    //     if (user.id === +id) {
-    //       console.log('user', user);
-    //       setInputValue(user)
-    //     }
-    //   }) 
-    // }, [])    
        
     function handleStopPropag(e) {
         e.stopPropagation()
@@ -42,8 +34,7 @@ const UserPage = () => {
     }
     useEffect(() => {
       if (Context.isLoaded) {
-        setInputValue(Context.userData[id])
-        console.log(1);
+        setInputValue(Context.userData.find(user => user.id === +id))
       } else { 
         fetch('https://jsonplaceholder.typicode.com/users/' + id , {
           method: 'GET',
@@ -57,8 +48,6 @@ const UserPage = () => {
           Context.setLoaded(prev => (!prev))
         })}
         }, [])
-
-    console.log(Context.isLoaded);
     
     function handleValue(e) {
       console.log(e.target.name);
@@ -87,13 +76,13 @@ const UserPage = () => {
           toggleButton()
           console.log(json);
           Context.setUserData(prev => {
-            const arr = prev.map(item => {
+            const arr = prev
+            arr.map(item => {
               if (item.id === inputValue.id) {
-                return Object.assign(item, inputValue)
-                
+                Object.assign(item, inputValue)
               }
             })
-            
+            return arr
           })
           console.log('userData ', Context.userData);
         }

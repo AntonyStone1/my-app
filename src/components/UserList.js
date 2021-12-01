@@ -1,45 +1,47 @@
 import React, { useState } from "react";
 import UserPage from './UserPage'
 import { useHistory} from "react-router-dom";
+import useUserData from "../hooks/useUserData";
+import { useEffect } from "react/cjs/react.development";
 
-const UserList = ({ userData }) => {
+const UserList = () => {  
+  const {userData, setUserData} = useUserData()
+  console.log('UserList', userData);
   const history = useHistory();
   const [state, setState] = useState({
-      show: false,
-      userPassed: null,
+      show: false
   });
   const handleClick = (e) => {
     history.push({
       pathname: `/${e.target.id}`
     })
   };
+ 
 
   const handleClose = () => {
-    setState({show: false, userPassed: null})
+    setState({show: false})
   };
+ 
 
+  return userData ? (<div className="user_container" >     
+    {state.show && (<UserPage onClose={handleClose}/>)}
+    { !state.show && (userData.map((user, index) => (
+      <div
+        key={user.id}
+        className="user_item"
+        id={user.id}
+        onClick={(e) => handleClick(e)}
+        >
+        <p>
+          {index + 1} {user.name}
+        </p>
+        <p>{user.company.name}</p>
+        <p>{user.website}</p>
+      </div>
+    )))}
+  </div>) : ''
   
-
-  return (
-
-    <div className="user_container" >     
-      {state.show && (<UserPage user={state.userPassed} onClose={handleClose}/>)}
-      { !state.show && (userData.map((user, index) => (        
-        <div
-          key={user.id}
-          className="user_item"
-          id={user.id}
-          onClick={(e) => handleClick(e)}
-          >
-          <p>
-            {index + 1} {user.name}
-          </p>
-          <p>{user.company.name}</p>
-          <p>{user.website}</p>
-        </div>
-      )))}
-    </div>
-  );
+  
 };
 
 export default UserList;

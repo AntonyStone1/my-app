@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import './index.css'
 import UserListHeading from "./components/UserListHeading";
 import Routing from './components/Routing'
+import { UserDataProvider } from "./hooks/UserDataProvider";
 
-export const GetUserData = () => {
-    const [userData, setUserData] = useState([])
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users/')
-        .then(response => response.json())
-        .then(res => {
-            setUserData(res)
-        }) 
-    }, [])
-    return userData
-}
-
-
-function App() {
-    return (        
-        <div className="wrapper">
-        <UserListHeading/>
-        <Routing/>
-        </div>
+function App() {   
+    return (
+        <>
+        <UserDataProvider>
+            <div className="wrapper">
+                <UserListHeading/>
+                <Routing/>
+            </div>
+        </UserDataProvider>
+        </>
     )    
 }
+
+
 
 ReactDOM.render(
     <App/>,    

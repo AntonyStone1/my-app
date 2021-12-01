@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserPage from './UserPage'
 import { useHistory} from "react-router-dom";
 import useUserData from "../hooks/useUserData";
-import { useEffect } from "react/cjs/react.development";
 
 const UserList = () => {  
   const {userData, setUserData} = useUserData()
@@ -13,10 +12,16 @@ const UserList = () => {
   });
   const handleClick = (e) => {
     history.push({
-      pathname: `/${e.target.id}`
+      pathname: `/home/user/${e.target.id}`
     })
-  };
- 
+  };  
+
+    useEffect(() => {
+        if (!localStorage.getItem('Leanne Graham')) {
+            history.push('/login')
+            console.log(1);
+        }
+    })
 
   const handleClose = () => {
     setState({show: false})
@@ -25,7 +30,7 @@ const UserList = () => {
 
   return userData ? (<div className="user_container" >     
     {state.show && (<UserPage onClose={handleClose}/>)}
-    { !state.show && (userData.map((user, index) => (
+    { !state.show && (userData.map((user, index) => (      
       <div
         key={user.id}
         className="user_item"

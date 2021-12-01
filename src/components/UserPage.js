@@ -58,7 +58,7 @@ const UserPage = () => {
     
     function closeHandle() {
       history.push({
-        pathname: `/`
+        pathname: `/home/`
       })
     }
 
@@ -75,15 +75,7 @@ const UserPage = () => {
         if (json) {
           toggleButton()
           console.log(json);
-          Context.setUserData(prev => {
-            const arr = prev
-            arr.map(item => {
-              if (item.id === inputValue.id) {
-                Object.assign(item, inputValue)
-              }
-            })
-            return arr
-          })
+          Context.setUserData(prev => prev.map(user => user.id === +id ? {...user, ...inputValue} : user))
           console.log('userData ', Context.userData);
         }
       })

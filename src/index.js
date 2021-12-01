@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import './index.css'
-import UserListHeading from "./components/UserListHeading";
 import Routing from './components/Routing'
 import { UserDataProvider } from "./hooks/UserDataProvider";
+import { useHistory } from "react-router-dom";
 
-function App() {   
+function App() {
+    
     return (
         <>
         <UserDataProvider>
             <div className="wrapper">
-                <UserListHeading/>
                 <Routing/>
             </div>
         </UserDataProvider>

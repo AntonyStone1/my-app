@@ -1,5 +1,3 @@
-import React from "react";
-
 export const setItem = (name, value) => {
     return localStorage.setItem(name, value)
 }

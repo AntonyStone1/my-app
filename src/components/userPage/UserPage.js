@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
-import useUserData from "../hooks/useUserData";
+import useUserData from "../../hooks/userData/useUserData";
 import { useHistory} from "react-router-dom";
 
 const UserPage = () => {

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import './index.css'
-import Routing from './components/Routing'
-import { UserDataProvider } from "./hooks/UserDataProvider";
-import { useHistory } from "react-router-dom";
-import { ProvideAuth } from "./components/Login/useAuth";
+import Routing from "./components/Router/Routing";
+import { UserDataProvider} from './hooks/userData/UserDataProvider'
+import { ProvideAuth } from "./hooks/auth/useAuth";
+import * as serviceWorker from './hooks/formValidation/serviceWorker'
 
 function App() {
     
@@ -26,3 +26,5 @@ function App() {
 ReactDOM.render(
     <App/>,    
     document.getElementById('root'))
+
+serviceWorker.unregister();

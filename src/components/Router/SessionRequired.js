@@ -1,7 +1,6 @@
-import react, { Children } from "react";
 import { Redirect } from "react-router-dom";
-import { useAuth } from "./Login/useAuth";
-import localStorage, { getItem } from '../utils/localStorage'
+import { useAuth } from "../../hooks/auth/useAuth";
+import { getItem } from '../../utils/localStorage'
 
 
 export const SessionRequired = ({children}) => {

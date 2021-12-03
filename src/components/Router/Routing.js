@@ -3,15 +3,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from "react-router-dom";
-import UserPage from "./UserPage";
-import UserList from "./UserList";
-import useUserData from "../hooks/useUserData";
-import { Auth } from "./Login/Auth";
-import UserListHeading from './UserListHeading'
-import UserPageHeading from './UserPageHeading'
-import { useAuth } from "./Login/useAuth";
+import UserPage from "../userPage/UserPage";
+import UserList from "../../components/userList/UserList";
+import useUserData from "../../hooks/userData/useUserData";
+import { Auth } from "../../hooks/auth/Auth";
+import UserListHeading from '../userList/UserListHeading'
+import UserPageHeading from '../userPage/UserPageHeading'
+import { useAuth } from "../../hooks/auth/useAuth";
 import { SessionRequired } from "./SessionRequired";
 
 

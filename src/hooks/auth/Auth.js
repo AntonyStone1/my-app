@@ -1,11 +1,14 @@
-import react, { useEffect } from "react";
-import { useHistory, Link, Redirect } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { Redirect } from "react-router-dom";
 import { useAuth } from "./useAuth";
+import useForm from "../formValidation/useForm";
 
 
 export const Auth = () => {
-    
+    const { values, handleChange, handleSubmit } = useForm(login);
+
+    function login() {
+        console.log(values);
+      }
     const { user, logIn, isAuth, signIn, setUser } = useAuth()
 
     console.log('Auth', isAuth);
@@ -27,7 +30,7 @@ export const Auth = () => {
 
     return (
         <div className='login-container'>
-            <div className='login_heading'>Authorization</div>
+            <h2 className='login_heading'>Authorization</h2>
             <div className='login_inputs'>
                 <label>Name 
                 <input type='text' name="name" onChange={changeHandler} autoComplete="off"/></label>

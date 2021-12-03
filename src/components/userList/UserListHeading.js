@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from '../components/Login/useAuth'
+import { useAuth } from '../../hooks/auth/useAuth'
 
 
 function UserListHeading() {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext, createContext } from 'react'
-import { setItem, getItem, removeKey, clearLocalStorage } from '../../utils/localStorage'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useContext, createContext } from 'react'
+import { setItem, getItem } from '../../utils/localStorage'
 
 const authContext = createContext()
 
@@ -22,7 +21,6 @@ function useProvideAuth() {
 
   function logIn(userName, pass) {
     if ((getItem(userName) === pass)) {
-        console.log(1);
         return setAuth(true)
         
     }

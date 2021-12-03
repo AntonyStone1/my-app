@@ -16,12 +16,7 @@ const UserList = () => {
     })
   };  
 
-    useEffect(() => {
-        if (!localStorage.getItem('Leanne Graham')) {
-            history.push('/login')
-            console.log(1);
-        }
-    })
+  
 
   const handleClose = () => {
     setState({show: false})

@@ -4,15 +4,18 @@ import './index.css'
 import Routing from './components/Routing'
 import { UserDataProvider } from "./hooks/UserDataProvider";
 import { useHistory } from "react-router-dom";
+import { ProvideAuth } from "./components/Login/useAuth";
 
 function App() {
     
     return (
         <>
         <UserDataProvider>
-            <div className="wrapper">
-                <Routing/>
-            </div>
+            <ProvideAuth>
+                <div className="wrapper">
+                    <Routing/>
+                </div>
+            </ProvideAuth>
         </UserDataProvider>
         </>
     )    

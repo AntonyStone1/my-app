@@ -1,47 +1,40 @@
-import React, { useState, useEffect } from "react";
-import UserPage from '../userPage/UserPage'
-import { useHistory} from "react-router-dom";
-import useUserData from "../../hooks/userData/useUserData";
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import UserPage from '../UserPage/UserPage'
+import useUserData from '../../hooks/userUserData/useUserData'
 
-const UserList = () => {  
-  const {userData, setUserData} = useUserData()
-  console.log('UserList', userData);
-  const history = useHistory();
-  const [state, setState] = useState({
-      show: false
-  });
+const UserList = () => {
+  const { userData } = useUserData()
+  const history = useHistory()
+  const [show, setShow] = useState(false)
+
   const handleClick = (e) => {
     history.push({
-      pathname: `/home/user/${e.target.id}`
+      pathname: `/home/user/${e.target.id}`,
     })
-  };  
-
-  
+  }
 
   const handleClose = () => {
-    setState({show: false})
-  };
- 
+    setShow(true)
+  }
 
-  return userData ? (<div className="user_container" >     
-    {state.show && (<UserPage onClose={handleClose}/>)}
-    { !state.show && (userData.map((user, index) => (      
-      <div
-        key={user.id}
-        className="user_item"
-        id={user.id}
-        onClick={(e) => handleClick(e)}
-        >
-        <p>
-          {index + 1} {user.name}
-        </p>
-        <p>{user.company.name}</p>
-        <p>{user.website}</p>
-      </div>
-    )))}
-  </div>) : ''
-  
-  
-};
+  return userData ? (
+    <div className="user_container">
+      {show.show && <UserPage onClose={handleClose} />}
+      {!show.show &&
+        userData.map((user, index) => (
+          <div key={user.id} className="user_item" id={user.id} onClick={(e) => handleClick(e)}>
+            <p>
+              {index + 1} {user.name}
+            </p>
+            <p>{user.company.name}</p>
+            <p>{user.website}</p>
+          </div>
+        ))}
+    </div>
+  ) : (
+    'Loading...'
+  )
+}
 
-export default UserList;
+export default UserList

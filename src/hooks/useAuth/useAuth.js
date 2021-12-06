@@ -3,33 +3,33 @@ import { setItem, getItem } from '../../utils/localStorage'
 
 const authContext = createContext()
 
+// eslint-disable-next-line react/prop-types
 export function ProvideAuth({ children }) {
+  // eslint-disable-next-line no-use-before-define
   const auth = useProvideAuth()
   return <authContext.Provider value={auth}>{children}</authContext.Provider>
 }
 
-export const useAuth = () => {
-  return useContext(authContext)
-}
+export const useAuth = () => useContext(authContext)
 
 function useProvideAuth() {
   const [isAuth, setAuth] = useState(false)
   const [user, setUser] = useState({
-      name: null,
-      password: null
+    name: null,
+    password: null,
   })
 
+  // eslint-disable-next-line consistent-return
   function logIn(userName, pass) {
-    if ((getItem(userName) === pass)) {
-        return setAuth(true)
-        
+    if (getItem(userName) === pass) {
+      return setAuth(true)
     }
   }
-  
+
   function signIn(userName, pass) {
     if (userName && pass) {
-        setItem(userName, pass )
-        logIn(userName, pass)
+      setItem(userName, pass)
+      logIn(userName, pass)
     }
   }
   function logOut() {
@@ -42,6 +42,7 @@ function useProvideAuth() {
     logIn,
     logOut,
     signIn,
-    setUser
+    setUser,
+    setAuth,
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import UserPage from '../UserPage2/UserPage'
+import UserPage from '../UserPage/UserPage'
 import useUserData from '../../hooks/userUserData/useUserData'
 
 const UserList = () => {

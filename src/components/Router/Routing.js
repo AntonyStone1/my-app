@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Auth from 'components/Auth/Auth'
-import UserList from 'components/UserList/UserList'
-import UserPage from 'components/UserPage/UserPage'
+import UserList from 'components/UserList1/UserList'
+import UserPage from 'components/UserPage2/UserPage'
 import useUserData from '../../hooks/userUserData/useUserData'
-import UserListHeading from '../UserList/UserListHeading'
-import UserPageHeading from '../UserPage/UserPageHeading'
+import UserListHeading from '../UserList1/UserListHeading'
+import UserPageHeading from '../UserPage2/UserPageHeading'
 import SessionRequired from './SessionRequired'
 
 export default function Routing() {

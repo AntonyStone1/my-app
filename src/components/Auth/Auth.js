@@ -2,7 +2,7 @@
 import { useAuth } from 'hooks/useAuth/useAuth'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Redirect, Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Redirect } from 'react-router-dom'
 import AuthCSS from './Auth.module.css'
 
 const NewAuth = () => {
@@ -116,6 +116,7 @@ const NewAuth = () => {
                 pattern: /(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9a-zA-Z]{8,}/g,
               })}
               className={AuthCSS.auth_input}
+              autoComplete="off"
             />
           </label>
           {errors?.password?.type === 'required' && (

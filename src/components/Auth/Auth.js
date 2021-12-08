@@ -2,7 +2,7 @@
 import { useAuth } from 'hooks/useAuth/useAuth'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, Redirect, Link } from 'react-router-dom'
+import { useHistory, Redirect, Link, useLocation } from 'react-router-dom'
 // eslint-disable-next-line import/no-unresolved
 import AuthCSS from './Auth.module.css'
 
@@ -25,8 +25,8 @@ const NewAuth = () => {
     text: 'text',
   }
   const history = useHistory()
-
-  console.log(history.location)
+  const location = useLocation()
+  console.log(location.pathname)
 
   const eyeClickHandle = () => {
     setEyeActive((prev) => !prev)
@@ -48,15 +48,11 @@ const NewAuth = () => {
     // eslint-disable-next-line react/react-in-jsx-scope
     return <Redirect to="/home" />
   }
-  useEffect(() => {
-    if (history.location.pathname === '/login') {
-      setAcc(false)
-    }
-  })
+  // console.log(history)
   return (
     <>
       <h1 className={AuthCSS.auth_heading}>Authorization</h1>
-      {!haveAcc ? (
+      {location.pathname === '/login' ? (
         <div className={AuthCSS.form_container}>
           <label className={AuthCSS.auth_label}>Name</label>
           <input

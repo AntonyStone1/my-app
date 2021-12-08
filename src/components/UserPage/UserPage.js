@@ -57,7 +57,7 @@ const UserPage = () => {
       pathname: `/home/`,
     })
   }
-
+  console.log(1)
   const SendForm = () => {
     axios
       .put(`https://jsonplaceholder.typicode.com/users/${id}`, {

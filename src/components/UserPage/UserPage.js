@@ -17,7 +17,6 @@ const UserPage = () => {
   })
   const { id } = useParams()
   const currentUser = userData.find((user) => user.id === +id)
-  console.log(currentUser)
   useEffect(() => {
     if (isLoaded) {
       setInputValue(userData.find((user) => user.id === +id))
@@ -57,7 +56,6 @@ const UserPage = () => {
       pathname: `/home/`,
     })
   }
-  console.log(1)
   const SendForm = () => {
     axios
       .put(`https://jsonplaceholder.typicode.com/users/${id}`, {

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useAuth } from 'hooks/useAuth/useAuth'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Redirect, Link } from 'react-router-dom'
+import { useHistory, Redirect, Link } from 'react-router-dom'
 // eslint-disable-next-line import/no-unresolved
 import AuthCSS from './Auth.module.css'
 
@@ -20,8 +20,13 @@ const NewAuth = () => {
   const [haveAcc, setAcc] = useState(false)
   const [wrongPass, setWrongPass] = useState(false)
   const [eyeActive, setEyeActive] = useState(false)
-  const inputTypePassword = 'password'
-  const inputTypeText = 'text'
+  const inputType = {
+    password: 'password',
+    text: 'text',
+  }
+  const history = useHistory()
+
+  console.log(history.location)
 
   const eyeClickHandle = () => {
     setEyeActive((prev) => !prev)
@@ -43,6 +48,11 @@ const NewAuth = () => {
     // eslint-disable-next-line react/react-in-jsx-scope
     return <Redirect to="/home" />
   }
+  useEffect(() => {
+    if (history.location.pathname === '/login') {
+      setAcc(false)
+    }
+  })
   return (
     <>
       <h1 className={AuthCSS.auth_heading}>Authorization</h1>
@@ -63,7 +73,7 @@ const NewAuth = () => {
             />
             <input
               name="password"
-              type={!eyeActive ? inputTypePassword : inputTypeText}
+              type={!eyeActive ? inputType.password : inputType.text}
               onChange={changeHandler}
               className={AuthCSS.auth_input}
             />
@@ -112,7 +122,7 @@ const NewAuth = () => {
               onClick={eyeClickHandle}
             />
             <input
-              type={!eyeActive ? inputTypePassword : inputTypeText}
+              type={!eyeActive ? inputType.password : inputType.text}
               {...register('password', {
                 required: true,
                 pattern: /(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9a-zA-Z]{8,}/g,

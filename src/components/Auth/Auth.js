@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useAuth } from 'hooks/useAuth/useAuth'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useHistory, Redirect, Link, useLocation } from 'react-router-dom'
-// eslint-disable-next-line import/no-unresolved
+import { Redirect, Link, useLocation } from 'react-router-dom'
 import AuthCSS from './Auth.module.css'
 
 const NewAuth = () => {
@@ -17,16 +16,14 @@ const NewAuth = () => {
     name: '',
     password: '',
   })
-  const [haveAcc, setAcc] = useState(false)
+
   const [wrongPass, setWrongPass] = useState(false)
   const [eyeActive, setEyeActive] = useState(false)
   const inputType = {
     password: 'password',
     text: 'text',
   }
-  const history = useHistory()
   const location = useLocation()
-  console.log(location.pathname)
 
   const eyeClickHandle = () => {
     setEyeActive((prev) => !prev)
@@ -41,14 +38,11 @@ const NewAuth = () => {
       setWrongPass(true)
     }
   }
-  const goToRegistration = () => {
-    setAcc((prev) => !prev)
-  }
+
   if (isAuth) {
     // eslint-disable-next-line react/react-in-jsx-scope
     return <Redirect to="/home" />
   }
-  // console.log(history)
   return (
     <>
       <h1 className={AuthCSS.auth_heading}>Authorization</h1>
@@ -81,9 +75,7 @@ const NewAuth = () => {
 
           <div className={AuthCSS.no_acc__heading}>Dont have account?</div>
           <div className={AuthCSS.no_acc__link}>
-            <Link to="/registration" onClick={goToRegistration}>
-              Sign Up
-            </Link>
+            <Link to="/registration">Sign Up</Link>
           </div>
         </div>
       ) : (

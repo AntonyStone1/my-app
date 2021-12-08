@@ -18,10 +18,16 @@ function useProvideAuth() {
     name: null,
     password: null,
   })
+  const [haveAccount, setAccount] = useState()
 
   // eslint-disable-next-line consistent-return
   function logIn(userName, pass) {
     if (getItem(userName) === pass) {
+      setUser({
+        name: userName,
+        password: pass,
+      })
+      console.log('use', isAuth)
       return setAuth(true)
     }
   }
@@ -44,5 +50,7 @@ function useProvideAuth() {
     signIn,
     setUser,
     setAuth,
+    haveAccount,
+    setAccount,
   }
 }

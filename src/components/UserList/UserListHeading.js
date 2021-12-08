@@ -7,7 +7,7 @@ function UserListHeading() {
     <>
       <div className="user_heading-container">
         <h1 className="user_headt-text">User list</h1>
-        <button type="button" className="logout_btn" onClick={() => logOut()}>
+        <button type="button" className="logout_btn" onClick={logOut}>
           Log Out
         </button>
       </div>

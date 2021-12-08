@@ -20,20 +20,22 @@ const UserList = () => {
 
   return userData ? (
     <div className="user_container">
-      {show.show && <UserPage onClose={handleClose} />}
-      {!show.show &&
+      {show.show ? (
+        <UserPage />
+      ) : (
         userData.map((user, index) => (
-          <div key={user.id} className="user_item" id={user.id} onClick={(e) => handleClick(e)}>
+          <div key={user.id} className="user_item" id={user.id} onClick={handleClick}>
             <p>
               {index + 1} {user.name}
             </p>
             <p>{user.company.name}</p>
             <p>{user.website}</p>
           </div>
-        ))}
+        ))
+      )}
     </div>
   ) : (
-    'Loading...'
+    <span>Loading...</span>
   )
 }
 

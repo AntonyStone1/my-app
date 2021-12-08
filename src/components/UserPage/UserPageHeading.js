@@ -1,7 +1,16 @@
 import React from 'react'
+import { useAuth } from 'hooks/useAuth/useAuth'
 
 function UserPageHeading() {
-  return <h1 className="user_container-capture">User Page</h1>
+  const { logOut } = useAuth()
+  return (
+    <div className="user_container-heading">
+      <h1>User Page</h1>
+      <button type="button" className="logout_btn" onClick={logOut}>
+        Log Out
+      </button>
+    </div>
+  )
 }
 
 export default UserPageHeading

@@ -1,0 +1,129 @@
+.form_container {
+  max-width: 500px !important;
+  margin: 0 auto;
+}
+
+.auth_heading {
+  font-weight: 100;
+  margin-top: 10vh;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.auth_required {
+  color: #bf1650;
+}
+
+.auth_required::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+.auth_input, .auth_login_btn {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.auth_label {
+  position: relative;
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.auth_submit_btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 100;
+  color: white;
+  text-transform: uppercase;
+  padding: 20px;
+  margin-top: 40px;
+  background: #ec5990 ;
+  border: none;
+  border-radius: 4px;
+  letter-spacing: 10px;
+  cursor: pointer;
+}
+
+.auth_login_btn:hover,
+.auth_submit_btn:hover {
+  background: #bf1650;
+}
+
+.auth_submit_btn:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+
+.auth_input:disabled {
+  opacity: 0.4;  
+}
+.auth_submit_btn {
+  -webkit-appearance: none;
+}
+.no_acc__heading, .no_acc__link{
+  color: white;
+  width: 147px;
+  margin: 0 auto;
+  text-align: center;
+}
+.no_acc__link {
+  color: rgb(101, 101, 255);
+}
+
+.auth_login_btn {
+  display: block;
+  padding: 10px 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: white;
+  background: #333;
+  text-transform: uppercase;
+  border: 1px solid #333;
+  border-radius: 4px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.pass_eye__open {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  background: url('../../img/icons/eye_open.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+}
+.pass_eye__close {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  background: url('../../img/icons/eye_close.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+}

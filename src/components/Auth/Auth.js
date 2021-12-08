@@ -1,54 +1,140 @@
-/* eslint-disable no-console */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useAuth } from 'hooks/useAuth/useAuth'
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth/useAuth'
-import { getItem } from '../../utils/localStorage'
+import { useForm } from 'react-hook-form'
+import { Redirect, Link } from 'react-router-dom'
+// eslint-disable-next-line import/no-unresolved
+import AuthCSS from './Auth.module.css'
 
-const Auth = () => {
-  const { logIn, isAuth, signIn, setAuth } = useAuth()
+const NewAuth = () => {
+  const { logIn, isAuth, signIn } = useAuth()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
   const [inputValue, setInputValue] = useState({
-    name: null,
-    password: null,
+    name: '',
+    password: '',
   })
+  const [haveAcc, setAcc] = useState(false)
+  const [wrongPass, setWrongPass] = useState(false)
+  const [eyeActive, setEyeActive] = useState(false)
+  const inputTypePassword = 'password'
+  const inputTypeText = 'text'
 
+  const eyeClickHandle = () => {
+    setEyeActive((prev) => !prev)
+  }
+  const onSubmit = (data) => signIn(data.name, data.password)
   const changeHandler = (e) => {
     setInputValue((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
-  const checkUser = () => {
+  const loginHandler = () => {
     logIn(inputValue.name, inputValue.password)
+    if (!isAuth) {
+      setWrongPass(true)
+    }
   }
-  const createNewUser = () => {
-    signIn(inputValue.name, inputValue.password)
+  const goToRegistration = () => {
+    setAcc((prev) => !prev)
   }
-
   if (isAuth) {
     // eslint-disable-next-line react/react-in-jsx-scope
     return <Redirect to="/home" />
   }
-
   return (
-    <div className="login-container">
-      <h2 className="login_heading">Authorization</h2>
-      <div className="login_inputs">
-        <label htmlFor="true">
-          Name
-          <input type="text" name="name" onChange={changeHandler} autoComplete="off" />
-        </label>
-        <label htmlFor="true">
-          Password
-          <input type="password" name="password" onChange={changeHandler} />
-        </label>
-      </div>
-      <div className="auth_btns">
-        <button type="button" className="auth_btn login_btn" onClick={checkUser}>
-          log In
-        </button>
-        <button type="button" className="auth_btn signin_btn" onClick={createNewUser}>
-          Sign In
-        </button>
-      </div>
-    </div>
+    <>
+      <h1 className={AuthCSS.auth_heading}>Authorization</h1>
+      {!haveAcc ? (
+        <div className={AuthCSS.form_container}>
+          <label className={AuthCSS.auth_label}>Name</label>
+          <input
+            name="name"
+            autoComplete="off"
+            onChange={changeHandler}
+            className={AuthCSS.auth_input}
+          />
+          <label className={AuthCSS.auth_label}>
+            Password
+            <span
+              className={!eyeActive ? AuthCSS.pass_eye__open : AuthCSS.pass_eye__close}
+              onClick={eyeClickHandle}
+            />
+            <input
+              name="password"
+              type={!eyeActive ? inputTypePassword : inputTypeText}
+              onChange={changeHandler}
+              className={AuthCSS.auth_input}
+            />
+          </label>
+          {wrongPass && <p className={AuthCSS.auth_required}>Wrong name or password</p>}
+          <button type="button" onClick={loginHandler} className={AuthCSS.auth_login_btn}>
+            log In
+          </button>
+
+          <div className={AuthCSS.no_acc__heading}>Dont have account?</div>
+          <div className={AuthCSS.no_acc__link}>
+            <Link to="/registration" onClick={goToRegistration}>
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)} className={AuthCSS.form_container}>
+          <label className={AuthCSS.auth_label}>Name</label>
+          <input
+            {...register('name', {
+              required: true,
+              maxLength: 20,
+              minLength: 3,
+              pattern: /^[A-Za-z]+$/i,
+            })}
+            autoComplete="off"
+            className={AuthCSS.auth_input}
+          />
+          {errors?.name?.type === 'required' && (
+            <p className={AuthCSS.auth_required}>This field is required</p>
+          )}
+          {errors?.name?.type === 'maxLength' && (
+            <p className={AuthCSS.auth_required}>First name cannot exceed 20 characters</p>
+          )}
+          {errors?.name?.type === 'minLength' && (
+            <p className={AuthCSS.auth_required}>Password must be at least 3 characters long</p>
+          )}
+          {errors?.name?.type === 'pattern' && (
+            <p className={AuthCSS.auth_required}>Alphabetical characters only</p>
+          )}
+          <label className={AuthCSS.auth_label}>
+            Password
+            <span
+              className={!eyeActive ? AuthCSS.pass_eye__open : AuthCSS.pass_eye__close}
+              onClick={eyeClickHandle}
+            />
+            <input
+              type={!eyeActive ? inputTypePassword : inputTypeText}
+              {...register('password', {
+                required: true,
+                pattern: /(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[0-9a-zA-Z]{8,}/g,
+              })}
+              className={AuthCSS.auth_input}
+            />
+          </label>
+          {errors?.password?.type === 'required' && (
+            <p className={AuthCSS.auth_required}>This field is required</p>
+          )}
+          {errors?.password?.type === 'pattern' && (
+            <p className={AuthCSS.auth_required}>
+              Must include at least one capital letter, one number and must be at least 8 characters
+              long
+            </p>
+          )}
+
+          <input type="submit" value="Sign up" className={AuthCSS.auth_submit_btn} />
+        </form>
+      )}
+    </>
   )
 }
 
-export default Auth
+export default NewAuth

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
+import axios from '../../../node_modules/axios/index'
 import useUserData from '../../hooks/userUserData/useUserData'
 
 const UserPage = () => {
@@ -15,7 +16,8 @@ const UserPage = () => {
     website: '',
   })
   const { id } = useParams()
-
+  const currentUser = userData.find((user) => user.id === +id)
+  console.log(currentUser)
   useEffect(() => {
     if (isLoaded) {
       setInputValue(userData.find((user) => user.id === +id))
@@ -57,16 +59,12 @@ const UserPage = () => {
   }
 
   const SendForm = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(inputValue),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json) {
+    axios
+      .put(`https://jsonplaceholder.typicode.com/users/${id}`, {
+        data: JSON.stringify(inputValue),
+      })
+      .then((response) => {
+        if (response.data) {
           toggleButton()
           setUserData((prev) =>
             prev.map((user) => (user.id === +id ? { ...user, ...inputValue } : user)),
@@ -77,7 +75,7 @@ const UserPage = () => {
   return (
     <div className="user_page-container">
       <span className="close_btn" onClick={closeHandle} />
-      <h1 className="user-page-heading">Home page of {id}</h1>
+      <h1 className="user-page-heading">Home page of {currentUser?.name}</h1>
       <div className="user_page-item" onClick={handleStopPropag}>
         <div className="user_info">
           <label htmlFor="true">

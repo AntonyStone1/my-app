@@ -16,6 +16,8 @@ const UserPage = () => {
     website: '',
   })
   const { id } = useParams()
+  // eslint-disable-next-line no-console
+  console.log(id)
   const currentUser = userData.find((user) => user.id === +id)
   useEffect(() => {
     if (isLoaded) {

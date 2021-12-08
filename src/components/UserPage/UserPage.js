@@ -19,19 +19,12 @@ const UserPage = () => {
   const currentUser = userData.find((user) => user.id === +id)
   useEffect(() => {
     if (isLoaded) {
-      setInputValue(userData.find((user) => user.id === +id))
+      setInputValue(userData?.find((user) => user.id === +id))
     } else {
-      fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
+      axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
+        setInputValue(response)
+        setLoaded((prev) => !prev)
       })
-        .then((response) => response.json())
-        .then((json) => {
-          setInputValue(json)
-          setLoaded((prev) => !prev)
-        })
     }
   }, [])
 

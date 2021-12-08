@@ -27,7 +27,6 @@ function useProvideAuth() {
         name: userName,
         password: pass,
       })
-      console.log('use', isAuth)
       return setAuth(true)
     }
   }

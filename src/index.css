@@ -161,7 +161,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     position: relative;
-    height: 50%;
+    height: 100%;
 }
 .user_info input {
     font-size: 20px;
@@ -172,6 +172,13 @@ body {
     font-size: 30px;
     color: black;
     margin-left: 20px;
+    margin-bottom: 30px;
+}
+.user_info p {
+    color: red;
+    width: 150px;
+    margin-top: -36px;
+    margin-left: 30px;
 }
 
 
@@ -188,7 +195,7 @@ body {
     position: absolute;
     color: black;
     left: 10%;
-    top: 120%;
+    top: 110%;
 }
 
 .user_container-heading {
@@ -216,7 +223,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    height: 70%;
+    height: 50%;
 }
 
 .user-page-heading {

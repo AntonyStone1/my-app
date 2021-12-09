@@ -10,7 +10,7 @@ const AntdUserList = () => {
 
   const handleClick = (e) => {
     userData.forEach((user) => {
-      if (user.name === e.target.innerText) {
+      if (user.id === e.id) {
         history.push({
           pathname: `/home/user/${user.id}`,
         })
@@ -27,23 +27,30 @@ const AntdUserList = () => {
     {
       title: 'Name',
       dataIndex: 'name',
-      key: 'id',
-      id: 'id',
-      render: (name) => <a onClick={handleClick}>{name}</a>,
+      key: 'name',
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: 'Email',
       dataIndex: 'email',
-      key: 'id',
+      key: 'email',
     },
     {
-      title: 'Phone number',
-      dataIndex: 'phone',
-      key: 'id',
+      title: 'Company',
+      dataIndex: ['company', 'name'],
+      key: 'company',
     },
   ]
 
-  return <Table dataSource={userData} columns={columns} onClick={handleClick} />
+  return (
+    <Table
+      dataSource={userData}
+      columns={columns}
+      onRow={(r) => ({
+        onClick: () => handleClick(r),
+      })}
+    />
+  )
 }
 
 export default AntdUserList

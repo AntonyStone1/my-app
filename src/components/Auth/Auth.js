@@ -44,7 +44,7 @@ const NewAuth = () => {
     return <Redirect to="/home" />
   }
   return (
-    <>
+    <div className={AuthCSS.auth_container}>
       <h1 className={AuthCSS.auth_heading}>Authorization</h1>
       {location.pathname === '/login' ? (
         <div className={AuthCSS.form_container}>
@@ -132,7 +132,7 @@ const NewAuth = () => {
           <input type="submit" value="Sign up" className={AuthCSS.auth_submit_btn} />
         </form>
       )}
-    </>
+    </div>
   )
 }
 

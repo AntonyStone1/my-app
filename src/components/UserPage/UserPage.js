@@ -19,7 +19,7 @@ const UserPage = () => {
     company: {
       name: '',
     },
-    website: '',
+    email: '',
   })
   const { id } = useParams()
 
@@ -38,10 +38,8 @@ const UserPage = () => {
   const onSubmit = (data) => {
     const newData = {
       name: data.name,
-      company: {
-        name: data.company,
-      },
-      website: data.website,
+      phone: data.phone,
+      email: data.email,
     }
     axios
       .put(`https://jsonplaceholder.typicode.com/users/${id}`, {
@@ -117,38 +115,38 @@ const UserPage = () => {
               <p style={{ color: 'red', marginLeft: '50px' }}>Alphabetical characters only</p>
             )}
             <label htmlFor="true">
-              Company:
+              Phone:
               <input
-                {...register('company', {
+                {...register('phone', {
                   required: true,
                   maxLength: 20,
-                  minLength: 3,
-                  pattern: /^[A-Za-z]+$/i,
+                  minLength: 10,
+                  // pattern: /^[0-9]+$/i,
                 })}
-                type="text"
+                type="phone"
                 autoComplete="off"
               />
             </label>
-            {errors?.company?.type === 'required' && (
+            {errors?.phone?.type === 'required' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>This field is required</p>
             )}
-            {errors?.company?.type === 'maxLength' && (
+            {errors?.phone?.type === 'maxLength' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>
                 First name cannot exceed 20 characters
               </p>
             )}
-            {errors?.company?.type === 'minLength' && (
+            {errors?.phone?.type === 'minLength' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>
-                Password must be at least 3 characters long
+                Password must be at least 10 characters long
               </p>
             )}
-            {errors?.company?.type === 'pattern' && (
+            {/* {errors?.phone?.type === 'pattern' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>Alphabetical characters only</p>
-            )}
+            )} */}
             <label htmlFor="true">
-              Website:
+              Email:
               <input
-                {...register('website', {
+                {...register('email', {
                   required: true,
                   maxLength: 20,
                   minLength: 3,
@@ -158,20 +156,20 @@ const UserPage = () => {
                 autoComplete="off"
               />
             </label>
-            {errors?.website?.type === 'required' && (
+            {errors?.email?.type === 'required' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>This field is required</p>
             )}
-            {errors?.website?.type === 'maxLength' && (
+            {errors?.email?.type === 'maxLength' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>
                 First name cannot exceed 20 characters
               </p>
             )}
-            {errors?.website?.type === 'minLength' && (
+            {errors?.email?.type === 'minLength' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>
                 Password must be at least 3 characters long
               </p>
             )}
-            {errors?.website?.type === 'pattern' && (
+            {errors?.email?.type === 'pattern' && (
               <p style={{ color: 'red', marginLeft: '50px' }}>Alphabetical characters only</p>
             )}
             {!disable && (
@@ -193,22 +191,22 @@ const UserPage = () => {
               />
             </label>
             <label htmlFor="true">
-              Company:
+              Phone:
               <input
                 onChange={handleValue}
-                name="company"
+                name="phone"
                 type="text"
-                value={inputValue.company.name}
+                value={inputValue.phone}
                 disabled
               />
             </label>
             <label htmlFor="true">
-              Website:
+              Email:
               <input
                 onChange={handleValue}
-                name="website"
+                name="email"
                 type="text"
-                value={inputValue.website}
+                value={inputValue.email}
                 disabled
               />
             </label>

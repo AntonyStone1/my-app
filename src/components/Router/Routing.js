@@ -5,6 +5,7 @@ import UserList from 'components/UserList/UserList'
 import UserPage from 'components/UserPage/UserPage'
 import axios from 'axios'
 import NewAuth from 'components/Auth/Auth'
+import AntdUserList from 'components/UserList/AntdUserList'
 import useUserData from '../../hooks/userUserData/useUserData'
 import UserListHeading from '../UserList/UserListHeading'
 import UserPageHeading from '../UserPage/UserPageHeading'
@@ -26,7 +27,8 @@ export default function Routing() {
         <SessionRequired>
           <Route exact path="/home">
             <UserListHeading />
-            <UserList />
+            {/* <UserList /> */}
+            <AntdUserList />
           </Route>
           <Route path="/home/user/:id">
             <UserPageHeading />

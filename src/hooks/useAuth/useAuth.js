@@ -13,7 +13,7 @@ export function ProvideAuth({ children }) {
 export const useAuth = () => useContext(authContext)
 
 function useProvideAuth() {
-  const [isAuth, setAuth] = useState(false)
+  const [isAuth, setAuth] = useState(true)
   const [user, setUser] = useState({
     name: null,
     password: null,

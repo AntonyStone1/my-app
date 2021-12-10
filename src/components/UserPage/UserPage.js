@@ -121,7 +121,7 @@ const UserPage = () => {
                 minLength: 3,
               })}
               // defaultValue={currentUser?.email}
-              type="text"
+              type="email"
               autoComplete="off"
               disabled={disable}
             />

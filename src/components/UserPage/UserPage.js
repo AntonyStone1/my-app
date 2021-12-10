@@ -10,7 +10,7 @@ const UserPage = () => {
   const { userData, setUserData, isLoaded, setLoaded } = useUserData()
   const { id } = useParams()
   const history = useHistory()
-  let currentUser = userData.find((user) => user.id === +id)
+  const currentUser = userData.find((user) => user.id === +id)
   const {
     register,
     reset,
@@ -24,12 +24,12 @@ const UserPage = () => {
     },
   })
   useEffect(() => {
-    if (!isLoaded) {
-      axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
-        currentUser = { ...currentUser, ...response.data }
-        setLoaded((prev) => !prev)
-      })
-    }
+    // if (!isLoaded) {
+    //   axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
+    //     currentUser = { ...currentUser, ...response.data }
+    //     setLoaded((prev) => !prev)
+    //   })
+    // }
     if (currentUser) {
       reset({ name: currentUser.name, company: currentUser.company.name, email: currentUser.email })
     }

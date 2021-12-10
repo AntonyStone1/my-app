@@ -31,14 +31,14 @@ const AntdUserList = () => {
       sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
       title: 'Company',
       dataIndex: ['company', 'name'],
       key: 'company',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
     },
   ]
 
@@ -46,6 +46,7 @@ const AntdUserList = () => {
     <Table
       dataSource={userData}
       columns={columns}
+      rowClassName="atnd_row-styles"
       onRow={(r) => ({
         onClick: () => handleClick(r),
       })}

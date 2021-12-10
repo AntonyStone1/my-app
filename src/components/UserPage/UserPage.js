@@ -10,12 +10,19 @@ const UserPage = () => {
   const { userData, setUserData, isLoaded, setLoaded } = useUserData()
   const { id } = useParams()
   const history = useHistory()
+  let currentUser = userData.find((user) => user.id === +id)
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
-  } = useForm()
-  let currentUser = userData.find((user) => user.id === +id)
+  } = useForm({
+    defaultValues: {
+      name: '...',
+      company: '...',
+      email: '...',
+    },
+  })
   useEffect(() => {
     if (!isLoaded) {
       axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then((response) => {
@@ -23,12 +30,17 @@ const UserPage = () => {
         setLoaded((prev) => !prev)
       })
     }
-  }, [])
+    if (currentUser) {
+      reset({ name: currentUser.name, company: currentUser.company.name, email: currentUser.email })
+    }
+  }, [userData])
   // eslint-disable-next-line no-console
   const onSubmit = (data) => {
     const newData = {
       name: data.name,
-      phone: data.phone,
+      company: {
+        name: data.company,
+      },
       email: data.email,
     }
     axios
@@ -70,7 +82,7 @@ const UserPage = () => {
                 minLength: 3,
                 pattern: /^[a-zA-Z ]+$/,
               })}
-              defaultValue={currentUser?.name}
+              // defaultValue={currentUser?.name}
               type="text"
               autoComplete="off"
               disabled={disable}
@@ -81,22 +93,22 @@ const UserPage = () => {
           {errors?.name?.type === 'minLength' && <p>Password must be at least 3 characters long</p>}
           {errors?.name?.type === 'pattern' && <p>Alphabetical characters only</p>}
           <label htmlFor="true">
-            Phone:
+            Company:
             <input
-              {...register('phone', {
+              {...register('company', {
                 required: true,
                 maxLength: 25,
                 minLength: 10,
               })}
-              defaultValue={currentUser?.phone}
-              type="phone"
+              // defaultValue={currentUser?.company?.name}
+              type="text"
               autoComplete="off"
               disabled={disable}
             />
           </label>
-          {errors?.phone?.type === 'required' && <p>This field is required</p>}
-          {errors?.phone?.type === 'maxLength' && <p>First name cannot exceed 20 characters</p>}
-          {errors?.phone?.type === 'minLength' && (
+          {errors?.company?.type === 'required' && <p>This field is required</p>}
+          {errors?.company?.type === 'maxLength' && <p>First name cannot exceed 20 characters</p>}
+          {errors?.company?.type === 'minLength' && (
             <p>Password must be at least 10 characters long</p>
           )}
 
@@ -108,7 +120,7 @@ const UserPage = () => {
                 maxLength: 20,
                 minLength: 3,
               })}
-              defaultValue={currentUser?.email}
+              // defaultValue={currentUser?.email}
               type="text"
               autoComplete="off"
               disabled={disable}

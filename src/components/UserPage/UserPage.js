@@ -7,7 +7,7 @@ import useUserData from '../../hooks/userUserData/useUserData'
 
 const UserPage = () => {
   const [disable, setDisable] = useState(true)
-  const { userData, setUserData, isLoaded, setLoaded } = useUserData()
+  const { userData, setUserData } = useUserData()
   const { id } = useParams()
   const history = useHistory()
   const currentUser = userData.find((user) => user.id === +id)

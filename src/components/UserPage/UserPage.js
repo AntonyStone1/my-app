@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react/cjs/react.development'
 import axios from '../../../node_modules/axios/index'
 import useUserData from '../../hooks/userUserData/useUserData'
 
